@@ -1,0 +1,24 @@
+package edu.rice.comp504.model.res;
+
+import com.google.gson.Gson;
+
+public abstract class AResponse {
+    private  String type;
+
+    /**
+     * Constructor.
+     * @param type the type of the response, i.e. the name of class
+     */
+    public AResponse(String type) {
+        this.type = type;
+    }
+
+    /**
+     * Convert the object to json string.
+     * @return the json encoding of object itself
+     */
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
+}

@@ -2,8 +2,11 @@ package edu.rice.comp504.model.res;
 
 import com.google.gson.Gson;
 
+/**
+ * Abstract class of response warping the message sending from server to client.
+ */
 public abstract class AResponse {
-    private  String type;
+    private  String type;   // The type of the response, use class name to denote type
 
     /**
      * Constructor.

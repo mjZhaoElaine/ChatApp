@@ -29,7 +29,7 @@ public class DispatcherAdapter extends Observable {
     private Map<Session, Integer> userIdFromSession;
 
     /**
-     * Constructor.
+     * Constructor, initializing all private fields.
      */
     public DispatcherAdapter() {
         this.nextRoomId = 0;
@@ -41,23 +41,37 @@ public class DispatcherAdapter extends Observable {
         this.userIdFromSession = new ConcurrentHashMap<>();
     }
 
+    /**
+     * Allocate a user id for a new session.
+     * @param session the new session
+     */
     public void newSession(Session session) {
 
     }
 
+    /**
+     * Get the user if from a session.
+     * @param session the session
+     * @return the user id binding with session
+     */
     public int getUserIdFromSession(Session session) {
         return this.userIdFromSession.get(session);
     }
 
+    /**
+     * Determine whether the session exists.
+     * @param session the session
+     * @return whether the session is still connected or not
+     */
     public boolean containsSession(Session session) {
         return this.userIdFromSession.containsKey(session);
     }
 
     /**
      * Load a user into the environment.
-     * @param session session
+     * @param session the session that requests to called the method
      * @param body of format "name age location school"
-     * @return the user loaded
+     * @return the new user that has been loaded
      */
     public User loadUser(Session session, String body) {
         return null;
@@ -65,9 +79,9 @@ public class DispatcherAdapter extends Observable {
 
     /**
      * Load a room into the environment.
-     * @param session session
+     * @param session the session that requests to called the method
      * @param body of format "name ageLower ageUpper {[location],}*{[location]} {[school],}*{[school]}"
-     * @return return
+     * @return the new room that has been loaded
      */
     public ChatRoom loadRoom(Session session, String body) {
         return null;
@@ -83,7 +97,7 @@ public class DispatcherAdapter extends Observable {
 
     /**
      * Remove a room with given roomId from the environment.
-     * @param roomId the id of the room to be removed
+     * @param roomId the id of the chat room to be removed
      */
     public void unloadRoom(int roomId) {
 
@@ -91,7 +105,7 @@ public class DispatcherAdapter extends Observable {
 
     /**
      * Make a user join a chat room.
-     * @param session session
+     * @param session the session that requests to called the method
      * @param body of format "roomId"
      */
     public void joinRoom(Session session, String body) {
@@ -100,7 +114,7 @@ public class DispatcherAdapter extends Observable {
 
     /**
      * Make a user volunteer to leave a chat room.
-     * @param session session
+     * @param session the session that requests to called the method
      * @param body of format "roomId"
      */
     public void leaveRoom(Session session, String body) {
@@ -109,7 +123,7 @@ public class DispatcherAdapter extends Observable {
 
     /**
      * Make modification on chat room filer by the owner.
-     * @param session session
+     * @param session the session of the chat room owner
      * @param body of format "roomId lower upper {[location],}*{[location]} {[school],}*{[school]}"
      */
     public void modifyRoom(Session session, String body) {
@@ -118,7 +132,7 @@ public class DispatcherAdapter extends Observable {
 
     /**
      * A sender sends a string message to a receiver.
-     * @param session session
+     * @param session the session of the message sender
      * @param body of format "roomId receiverId rawMessage"
      */
     public void sendMessage(Session session, String body) {
@@ -127,7 +141,7 @@ public class DispatcherAdapter extends Observable {
 
     /**
      * Acknowledge the message from the receiver.
-     * @param session session
+     * @param session the session of the message receiver
      * @param body of format "msgId"
      */
     public void ackMessage(Session session, String body) {
@@ -136,7 +150,7 @@ public class DispatcherAdapter extends Observable {
 
     /**
      * Send query result from controller to front end.
-     * @param session session
+     * @param session the session that requests to called the method
      * @param body of format "type roomId [senderId] [receiverId]"
      */
     public void query(Session session, String body) {
@@ -154,8 +168,8 @@ public class DispatcherAdapter extends Observable {
 
     /**
      * Get the names of all chat room members.
-     * @param roomId the id of the room
-     * @return names of all chat room members
+     * @param roomId the id of the chat room
+     * @return all chat room members, mapping from user id to user name
      */
     private Map<Integer, String> getUsers(int roomId) {
         return null;
@@ -163,7 +177,7 @@ public class DispatcherAdapter extends Observable {
 
     /**
      * Get notifications in the chat room.
-     * @param roomId the id of the room
+     * @param roomId the id of the chat room
      * @return notifications of the chat room
      */
     private List<String> getNotifications(int roomId) {
@@ -175,7 +189,7 @@ public class DispatcherAdapter extends Observable {
      * @param roomId the id of the chat room
      * @param userAId the id of user A
      * @param userBId the id of user B
-     * @return chat history between user A and user B
+     * @return chat history between user A and user B at a chat room
      */
     private List<Message> getChatHistory(int roomId, int userAId, int userBId) {
         return null;

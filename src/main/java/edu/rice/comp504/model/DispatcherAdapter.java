@@ -162,7 +162,7 @@ public class DispatcherAdapter extends Observable {
      * @param user user expected to receive the notification
      * @param response the information for notifying
      */
-    public void notifyByUser(User user, AResponse response) {
+    public static void notifyClient(User user, AResponse response) {
 
     }
 
@@ -172,7 +172,7 @@ public class DispatcherAdapter extends Observable {
      * @param session the session to notify
      * @param response the notification information
      */
-    public static void notifyBySession(Session user, AResponse response) {
+    public static void notifyClient(Session session, AResponse response) {
 
     }
 
